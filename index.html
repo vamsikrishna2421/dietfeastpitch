@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diet Feast — Eat Big. Stay Lean.</title>
+<style>
+:root {
+  --green-dark: #1E4D2B;
+  --green: #2F7344;
+  --lime: #85C341;
+  --lime-dark: #6FA834;
+  --green-light: #EAF5DE;
+  --terra: #C95A3F;
+  --terra-light: #F8E5DE;
+  --gold: #E8A93B;
+  --gold-light: #FBEFD0;
+  --cream: #FAF6EE;
+  --white: #FFFFFF;
+  --ink: #1F2A1F;
+  --ink-soft: #4A574A;
+  --gray: #8A8A8A;
+  --gray-light: #E8E4DA;
+  --shadow: 0 2px 12px rgba(31,42,31,0.08);
+  --shadow-lg: 0 8px 32px rgba(31,42,31,0.12);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.55;
+  font-size: 15px;
+}
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-light);
+  padding: 12px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 900; font-size: 20px; color: var(--ink); letter-spacing: -0.02em;
+}
+.logo .lime { color: var(--lime-dark); }
+.logo-icon {
+  width: 36px; height: 36px;
+  background: var(--lime);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(133,195,65,0.35);
+}
+.tabs { display: flex; gap: 4px; }
+.tab {
+  padding: 8px 16px;
+  background: transparent; border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 14px; font-weight: 600;
+  color: var(--ink-soft); cursor: pointer;
+  transition: all 0.15s ease;
+}
+.tab:hover { background: var(--green-light); color: var(--green-dark); }
+.tab.active { background: var(--green-dark); color: var(--white); }
+.section { display: none; }
+.section.active { display: block; }
+.container { max-width: 1200px; margin: 0 auto; padding: 48px 24px; }
+.container-narrow { max-width: 980px; margin: 0 auto; padding: 48px 24px; }
+h1 { font-size: 44px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; color: var(--green-dark); }
+h2 { font-size: 30px; line-height: 1.15; font-weight: 800; letter-spacing: -0.01em; color: var(--green-dark); margin-bottom: 8px; }
+h3 { font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+h4 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.eyebrow {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--terra); margin-bottom: 12px;
+}
+.lead { font-size: 18px; color: var(--ink-soft); line-height: 1.55; margin-bottom: 8px; }
+.muted { color: var(--ink-soft); font-size: 14px; }
+.tiny { font-size: 12px; color: var(--gray); }
+.section-head { text-align: center; margin-bottom: 36px; }
+.section-head h2 { display: inline-block; }
+.grid { display: grid; gap: 16px; }
+.g2 { grid-template-columns: repeat(2, 1fr); }
+.g3 { grid-template-columns: repeat(3, 1fr); }
+.g4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 820px) {
+  .g2, .g3, .g4 { grid-template-columns: 1fr; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 24px; }
+}
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-light);
+}
+.card-dark { background: var(--green-dark); color: var(--white); }
+.card-dark h2, .card-dark h3, .card-dark h4 { color: var(--white); }
+.card-dark .muted { color: rgba(255,255,255,0.75); }
+.card-warm { background: var(--terra); color: var(--white); }
+.card-warm h2, .card-warm h3 { color: var(--white); }
+.card-cream { background: var(--green-light); }
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: var(--green-dark); color: var(--white);
+  border: none; border-radius: 999px;
+  font-weight: 700; font-size: 14px; cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-warm { background: var(--terra); }
+.btn-outline { background: transparent; color: var(--green-dark); border: 2px solid var(--green-dark); }
+.tag {
+  display: inline-block;
+  padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  background: var(--gold-light); color: var(--gold);
+}
+.tag-green { background: var(--green-light); color: var(--green-dark); }
+.tag-terra { background: var(--terra-light); color: var(--terra); }
+
+/* ===== INVESTOR SECTION ===== */
+.hero-invest {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  color: var(--white);
+  padding: 80px 24px 60px;
+  text-align: center;
+}
+.hero-invest h1 { color: var(--white); margin-bottom: 16px; }
+.hero-invest .lead { color: rgba(255,255,255,0.85); margin-bottom: 28px; }
+.hero-stat-strip {
+  display: flex; justify-content: center; gap: 36px; flex-wrap: wrap;
+  margin-top: 32px;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num { font-size: 32px; font-weight: 800; color: var(--gold); display: block; }
+.hero-stat-lbl { font-size: 12px; opacity: 0.85; letter-spacing: 0.06em; text-transform: uppercase; }
+.problem-stat {
+  background: var(--white); padding: 24px; border-radius: var(--radius);
+  border-left: 4px solid var(--terra);
+}
+.big-num { font-size: 40px; font-weight: 800; color: var(--terra); line-height: 1; }
+.pillar {
+  background: var(--white); padding: 24px; border-radius: var(--radius);
+  border-top: 4px solid var(--green-dark);
+}
+.pillar-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--green-light);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px;
+}
+.svg-icon { width: 26px; height: 26px; stroke: var(--green-dark); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.tier {
+  background: var(--white); padding: 24px; border-radius: var(--radius);
+  border: 2px solid var(--gray-light);
+  position: relative;
+}
+.tier.featured { border-color: var(--green-dark); background: var(--green-light); }
+.tier-price { font-size: 32px; font-weight: 800; color: var(--green-dark); margin: 8px 0; }
+.tier-price span { font-size: 14px; font-weight: 500; color: var(--ink-soft); }
+.tier ul { list-style: none; margin-top: 12px; }
+.tier li {
+  padding: 6px 0 6px 22px; position: relative; font-size: 14px;
+}
+.tier li::before {
+  content: ""; position: absolute; left: 0; top: 12px;
+  width: 14px; height: 6px; border-left: 2px solid var(--green); border-bottom: 2px solid var(--green);
+  transform: rotate(-45deg);
+}
+.tier-badge {
+  position: absolute; top: -10px; right: 16px;
+  background: var(--gold); color: var(--ink);
+  padding: 4px 10px; border-radius: 999px;
+  font-size: 11px; font-weight: 700;
+}
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before {
+  content: ""; position: absolute; left: 12px; top: 4px; bottom: 4px;
+  width: 2px; background: var(--gray-light);
+}
+.phase { position: relative; padding-bottom: 24px; }
+.phase::before {
+  content: ""; position: absolute; left: -28px; top: 4px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--green-dark);
+  border: 3px solid var(--cream);
+}
+.phase h4 { color: var(--green-dark); }
+.comparison-table {
+  width: 100%; border-collapse: collapse;
+  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow); font-size: 14px;
+}
+.comparison-table th, .comparison-table td {
+  padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--gray-light);
+}
+.comparison-table th { background: var(--green-dark); color: var(--white); font-weight: 700; font-size: 13px; }
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table .yes { color: var(--green); font-weight: 700; }
+.comparison-table .no { color: var(--terra); font-weight: 700; }
+.financials {
+  display: grid; grid-template-columns: 2fr 3fr; gap: 16px;
+}
+@media (max-width: 820px) { .financials { grid-template-columns: 1fr; } }
+.bar-chart { display: flex; align-items: flex-end; gap: 12px; height: 220px; padding-top: 24px; }
+.bar { flex: 1; background: linear-gradient(to top, var(--green-dark), var(--green)); border-radius: 6px 6px 0 0; position: relative; min-height: 20px; }
+.bar-lbl { position: absolute; bottom: -22px; left: 0; right: 0; text-align: center; font-size: 11px; color: var(--ink-soft); font-weight: 600; }
+.bar-val { position: absolute; top: -22px; left: 0; right: 0; text-align: center; font-size: 12px; color: var(--green-dark); font-weight: 700; }
+.econ-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 0; border-bottom: 1px dashed var(--gray-light); font-size: 14px;
+}
+.econ-row:last-child { border-bottom: 2px solid var(--green-dark); padding-top: 14px; margin-top: 6px; font-weight: 700; }
+
+/* ===== PERSONAL SECTION ===== */
+.profile-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 820px) { .profile-grid { grid-template-columns: repeat(2, 1fr); } }
+.stat-card {
+  background: var(--white); padding: 18px; border-radius: var(--radius);
+  border-left: 4px solid var(--green-dark);
+}
+.stat-num { font-size: 28px; font-weight: 800; color: var(--green-dark); line-height: 1.1; }
+.stat-lbl { font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; text-transform: uppercase; margin-top: 4px; }
+.stat-sub { font-size: 12px; color: var(--gray); margin-top: 4px; }
+.store {
+  background: var(--white); border-radius: var(--radius); padding: 20px;
+  border-top: 4px solid var(--terra);
+}
+.store-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--gray-light);
+}
+.store-name { font-weight: 800; font-size: 16px; color: var(--ink); }
+.store-loc { font-size: 12px; color: var(--ink-soft); }
+.store-total { font-weight: 800; color: var(--terra); font-size: 17px; }
+.store-list { list-style: none; }
+.store-item {
+  display: flex; justify-content: space-between; padding: 6px 0;
+  border-bottom: 1px dashed var(--gray-light); font-size: 14px;
+}
+.store-item:last-child { border-bottom: none; }
+.store-item .price { font-weight: 700; color: var(--green-dark); }
+.day-card {
+  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow); margin-bottom: 16px;
+  border: 1px solid var(--gray-light);
+}
+.day-head {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  color: var(--white); padding: 14px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.day-head h3 { color: var(--white); margin: 0; font-size: 17px; }
+.day-macros { display: flex; gap: 16px; font-size: 12px; }
+.day-macros span { display: flex; flex-direction: column; align-items: center; }
+.day-macros strong { font-size: 15px; color: var(--gold); }
+.day-body { padding: 18px 20px; }
+.meal {
+  display: grid; grid-template-columns: 64px 1fr;
+  gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--gray-light);
+}
+.meal:last-child { border-bottom: none; }
+.meal-time {
+  background: var(--green-light); border-radius: var(--radius-sm);
+  padding: 8px 4px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.meal-time strong { color: var(--green-dark); font-size: 13px; font-weight: 800; }
+.meal-time span { font-size: 10px; color: var(--ink-soft); margin-top: 2px; }
+.meal-content h4 { color: var(--green-dark); margin-bottom: 4px; }
+.meal-recipe { font-size: 13px; color: var(--ink-soft); margin-bottom: 6px; line-height: 1.5; }
+.meal-stats {
+  display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; font-size: 11px;
+}
+.meal-stats .stat {
+  background: var(--cream); padding: 3px 8px; border-radius: 999px;
+  color: var(--ink-soft); font-weight: 600;
+}
+.benefit { font-size: 12px; color: var(--green); margin-top: 4px; font-style: italic; }
+.precaution { font-size: 12px; color: var(--terra); margin-top: 2px; }
+.ingredient-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+}
+@media (max-width: 820px) { .ingredient-grid { grid-template-columns: 1fr; } }
+.ing-card {
+  background: var(--white); padding: 14px; border-radius: var(--radius-sm);
+  border-left: 3px solid var(--green);
+}
+.ing-card h4 { color: var(--green-dark); font-size: 14px; }
+.ing-card .muted { font-size: 12px; margin-top: 4px; }
+
+/* ===== CUSTOMER SECTION ===== */
+.hero-cust {
+  background: linear-gradient(135deg, var(--cream), var(--green-light));
+  padding: 60px 24px;
+  text-align: center;
+  position: relative;
+}
+.feature-pills {
+  display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+  margin-top: 32px; padding-top: 24px;
+  border-top: 1px solid rgba(31,42,31,0.1);
+  max-width: 800px; margin-left: auto; margin-right: auto;
+}
+.pill {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); padding: 10px 18px; border-radius: 999px;
+  font-size: 13px; font-weight: 700; color: var(--ink);
+  box-shadow: var(--shadow); border: 1px solid var(--gray-light);
+}
+.pill svg { width: 18px; height: 18px; flex-shrink: 0; }
+.hero-cust h1 { font-size: 50px; color: var(--green-dark); }
+@media (max-width: 820px) { .hero-cust h1 { font-size: 32px; } }
+.hero-cust .lead { font-size: 20px; max-width: 700px; margin: 16px auto 28px; }
+.hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.problem-card {
+  background: var(--white); padding: 20px; border-radius: var(--radius);
+  border-top: 4px solid var(--terra);
+}
+.problem-card h4 { color: var(--terra); margin-bottom: 8px; font-size: 16px; }
+.solution-card {
+  background: var(--white); padding: 24px; border-radius: var(--radius);
+  text-align: center;
+}
+.solution-icon {
+  width: 64px; height: 64px; margin: 0 auto 14px;
+  border-radius: 16px; background: var(--gold-light);
+  display: flex; align-items: center; justify-content: center;
+}
+.menu-preview {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px;
+}
+@media (max-width: 820px) { .menu-preview { grid-template-columns: repeat(2, 1fr); } }
+.menu-day {
+  background: var(--white); border-radius: var(--radius-sm);
+  padding: 12px; border: 1px solid var(--gray-light);
+  font-size: 12px;
+}
+.menu-day strong { color: var(--green-dark); display: block; margin-bottom: 6px; font-size: 13px; }
+.menu-day p { margin: 3px 0; color: var(--ink-soft); }
+.cust-tier {
+  background: var(--white); padding: 28px 24px; border-radius: var(--radius);
+  border: 2px solid var(--gray-light);
+  position: relative; text-align: center;
+}
+.cust-tier.featured { border-color: var(--green-dark); transform: scale(1.04); box-shadow: var(--shadow-lg); }
+.cust-tier-name { font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); font-weight: 700; }
+.cust-tier-price { font-size: 44px; font-weight: 800; color: var(--green-dark); margin: 10px 0 4px; }
+.cust-tier-price span { font-size: 16px; font-weight: 500; color: var(--ink-soft); }
+.cust-tier-sub { font-size: 13px; color: var(--ink-soft); margin-bottom: 16px; }
+.cust-tier ul { list-style: none; text-align: left; margin: 16px 0; }
+.cust-tier li { padding: 6px 0 6px 22px; position: relative; font-size: 14px; }
+.cust-tier li::before {
+  content: ""; position: absolute; left: 0; top: 12px;
+  width: 14px; height: 6px; border-left: 2px solid var(--green); border-bottom: 2px solid var(--green);
+  transform: rotate(-45deg);
+}
+.benefit-card {
+  background: var(--white); padding: 20px; border-radius: var(--radius);
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.benefit-icon {
+  flex: 0 0 40px; height: 40px; border-radius: 10px;
+  background: var(--green-light);
+  display: flex; align-items: center; justify-content: center;
+}
+.faq-item {
+  background: var(--white); border-radius: var(--radius-sm);
+  padding: 16px 20px; margin-bottom: 8px;
+  border: 1px solid var(--gray-light);
+}
+.faq-item h4 { color: var(--green-dark); margin-bottom: 6px; }
+.faq-item p { font-size: 14px; color: var(--ink-soft); }
+.cta-strip {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  color: var(--white); padding: 50px 24px;
+  text-align: center; border-radius: var(--radius);
+  margin-top: 32px;
+}
+.cta-strip h2 { color: var(--white); }
+.cta-strip .lead { color: rgba(255,255,255,0.9); margin: 12px 0 24px; }
+.compare-strip {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-top: 24px;
+}
+@media (max-width: 820px) { .compare-strip { grid-template-columns: 1fr; } }
+.compare-side {
+  background: var(--white); padding: 22px; border-radius: var(--radius);
+}
+.compare-side.bad { border-left: 4px solid var(--terra); }
+.compare-side.good { border-left: 4px solid var(--green); }
+.compare-side ul { list-style: none; }
+.compare-side li { padding: 6px 0 6px 22px; position: relative; font-size: 14px; }
+.compare-side.bad li::before { content: "✕"; position: absolute; left: 0; color: var(--terra); font-weight: 700; }
+.compare-side.good li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+.footer {
+  background: var(--ink); color: var(--gray-light);
+  padding: 32px 24px; text-align: center; font-size: 13px;
+  margin-top: 48px;
+}
+.tip-box {
+  background: var(--gold-light); border-left: 4px solid var(--gold);
+  padding: 14px 18px; border-radius: var(--radius-sm);
+  margin: 12px 0; font-size: 14px;
+}
+.tip-box strong { color: var(--ink); }
+.precaution-box {
+  background: var(--terra-light); border-left: 4px solid var(--terra);
+  padding: 14px 18px; border-radius: var(--radius-sm);
+  margin: 12px 0; font-size: 14px;
+}
+.section-spacer { height: 32px; }
+.subhead {
+  display: flex; align-items: center; gap: 12px;
+  margin: 32px 0 16px;
+}
+.subhead::before, .subhead::after {
+  content: ""; flex: 1; height: 1px; background: var(--gray-light);
+}
+.subhead h3 { color: var(--green-dark); font-size: 18px; margin: 0; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F2A1F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11h18"/>
+        <path d="M4 11c0 4.5 3.5 8 8 8s8-3.5 8-8"/>
+        <path d="M8 8c.5-1.5 2-2.5 4-2.5s3.5 1 4 2.5"/>
+      </svg>
+    </div>
+    Diet <span class="lime">Feast</span>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-section="customer">Customer</button>
+    <button class="tab" data-section="investor">Investor</button>
+    <button class="tab" data-section="personal">My Plan</button>
+  </div>
+</nav>
+
+<!-- ===================== CUSTOMER SECTION ===================== -->
+<section id="customer" class="section active">
+
+<div class="hero-cust">
+  <span class="tag tag-green">Worcester, MA · Local Delivery</span>
+  <h1 style="margin-top:16px;">Eat <span style="color:var(--lime-dark);">Big.</span><br>Stay Lean.</h1>
+  <p class="lead">Fresh, ready-to-eat weight-loss meals delivered to your door twice a day — hot for lunch, hot for dinner. Massive plates. Tiny calories. Zero cooking.</p>
+  <div class="hero-cta">
+    <a class="btn" href="#pricing-cust">Try a week — $89</a>
+    <a class="btn btn-outline" href="#menu-cust">See this week's menu</a>
+  </div>
+  <p class="tiny" style="margin-top:16px;">No commitment · Cancel anytime · First-week guarantee</p>
+  <div class="feature-pills">
+    <div class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#6FA834" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M5 12c0 4 3 7 7 7s7-3 7-7"/></svg>
+      <span>Shirataki Noodles</span>
+    </div>
+    <div class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#6FA834" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v4M6 12v8M3 8h6M3 16h6M14 4c2 0 4 2 4 4s-2 4-4 4M14 12v8"/></svg>
+      <span>High Volume</span>
+    </div>
+    <div class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#6FA834" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c2 3 4 5 4 9a8 8 0 0 1-8 8 5 5 0 0 1 0-10c2 0 4-2 4-4 0-1 0-2 0-3z"/></svg>
+      <span>Low Calorie</span>
+    </div>
+    <div class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#6FA834" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4-7-11a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 7-7 11-7 11z"/></svg>
+      <span>Guilt Free</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section-head">
+    <span class="eyebrow">The problem we solve</span>
+    <h2>You don't have a willpower problem. You have a planning problem.</h2>
+  </div>
+
+  <div class="compare-strip">
+    <div class="compare-side bad">
+      <h3 style="color:var(--terra)">Without Diet Feast</h3>
+      <ul>
+        <li>You spend 4+ hours/week planning, shopping, prepping</li>
+        <li>You buy ingredients that rot before you cook them</li>
+        <li>You give up by Wednesday and order DoorDash</li>
+        <li>Your grocery bill is $300–500/month with no progress</li>
+        <li>You don't know if you're under-eating, over-eating, or just eating wrong</li>
+        <li>Restrictive diets feel like punishment, so you quit</li>
+      </ul>
+    </div>
+    <div class="compare-side good">
+      <h3 style="color:var(--green)">With Diet Feast</h3>
+      <ul>
+        <li>One delivery. Zero planning. Zero shopping.</li>
+        <li>Pre-portioned, pre-cleaned, pre-cut. 10 minutes to plate.</li>
+        <li>Every meal is high-volume — you eat a lot, not a little</li>
+        <li>Locked weekly cost. No food waste.</li>
+        <li>Calories and protein dialed in by registered dietitians</li>
+        <li>You finish each meal full, not hungry. You actually stick with it.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-spacer"></div>
+  <div class="section-head">
+    <span class="eyebrow">How it works</span>
+    <h2>Three steps, then you just eat.</h2>
+  </div>
+
+  <div class="grid g3">
+    <div class="solution-card">
+      <div class="solution-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E8A93B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </div>
+      <h3>1. Pick your plan</h3>
+      <p class="muted">Lite (10 meals/week), Full Week (14 meals/week), or Plus (14 meals + snacks). Vegetarian and standard menus, rotating every week.</p>
+    </div>
+    <div class="solution-card">
+      <div class="solution-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E8A93B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 7v5l3 2"/>
+        </svg>
+      </div>
+      <h3>2. Twice-daily fresh delivery</h3>
+      <p class="muted">Hot lunch delivered at noon. Hot dinner delivered at 7 PM. Never frozen. Never reheated yesterday. Made fresh hours before it arrives.</p>
+    </div>
+    <div class="solution-card">
+      <div class="solution-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E8A93B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v8M5 8l7 8 7-8M5 21h14"/>
+        </svg>
+      </div>
+      <h3>3. Open & eat</h3>
+      <p class="muted">Zero cooking. Zero dishes. Open the container, eat the food. 1,200–1,400 kcal/day. Expected loss: 1–2 lbs/week, sustainably.</p>
+    </div>
+  </div>
+
+  <div class="section-spacer"></div>
+  <div class="section-head" id="menu-cust">
+    <span class="eyebrow">This week's menu</span>
+    <h2>Real food. Real portions. Real results.</h2>
+  </div>
+
+  <div class="menu-preview">
+    <div class="menu-day">
+      <strong>Mon</strong>
+      <p><span style="color:var(--lime-dark); font-weight:700;">12 PM</span> Lemon chicken-leg slaw bowl</p>
+      <p><span style="color:var(--lime-dark); font-weight:700;">7 PM</span> Shirataki garlic stir-fry</p>
+    </div>
+    <div class="menu-day">
+      <strong>Tue</strong>
+      <p><span style="color:var(--lime-dark); font-weight:700;">12 PM</span> Tilapia + cabbage tabouli</p>
+      <p><span style="color:var(--lime-dark); font-weight:700;">7 PM</span> Chicken-cabbage curry bowl</p>
+    </div>
+    <div class="menu-day">
+      <strong>Wed</strong>
+      <p><span style="color:var(--lime-dark); font-weight:700;">12 PM</span> Tandoori chicken + raita slaw</p>
+      <p><span style="color:var(--lime-dark); font-weight:700;">7 PM</span> Tofu stir-fry + zoodles</p>
+    </div>
+    <div class="menu-day">
+      <strong>Thu</strong>
+      <p><span style="color:var(--lime-dark); font-weight:700;">12 PM</span> Lentil-vegetable bowl</p>
+      <p><span style="color:var(--lime-dark); font-weight:700;">7 PM</span> Pepper chicken + cauli rice</p>
+    </div>
+    <div class="menu-day">
+      <strong>Fri</strong>
+      <p><span style="color:var(--lime-dark); font-weight:700;">12 PM</span> Shrimp & green-bean stir-fry</p>
+      <p><span style="color:var(--lime-dark); font-weight:700;">7 PM</span> Egg curry + cabbage roti</p>
+    </div>
+    <div class="menu-day">
+      <strong>Sat</strong>
+      <p><span style="color:var(--lime-dark); font-weight:700;">12 PM</span> Grilled chicken Cobb-style salad</p>
+      <p><span style="color:var(--lime-dark); font-weight:700;">7 PM</span> Konjac shoyu noodle bowl</p>
+    </div>
+    <div class="menu-day">
+      <strong>Sun</strong>
+      <p><span style="color:var(--lime-dark); font-weight:700;">12 PM</span> Turkey chili + slaw</p>
+      <p><span style="color:var(--lime-dark); font-weight:700;">7 PM</span> Mediterranean chicken plate</p>
+    </div>
+  </div>
+
+  <div class="section-spacer"></div>
+  <div class="section-head" id="pricing-cust">
+    <span class="eyebrow">Plans</span>
+    <h2>Less than restaurant takeout. Far better food.</h2>
+    <p class="muted" style="margin-top:8px;">Worcester restaurant lunch + dinner: ~$28/day = $196/week. Diet Feast Full Week: $129/week — hot, fresh, twice daily, built for weight loss.</p>
+  </div>
+
+  <div class="grid g3" style="align-items:start;">
+    <div class="cust-tier">
+      <div class="cust-tier-name">Lite</div>
+      <div class="cust-tier-price">$89<span> / week</span></div>
+      <div class="cust-tier-sub">5 lunches + 5 dinners (Mon–Fri)</div>
+      <ul>
+        <li>10 fresh meals delivered twice daily</li>
+        <li>~1,200 kcal/day target</li>
+        <li>Hot lunch · 12 PM</li>
+        <li>Hot dinner · 7 PM</li>
+        <li>Cancel anytime</li>
+      </ul>
+      <a class="btn btn-outline" href="#cta-cust" style="width:100%;">Choose Lite</a>
+    </div>
+    <div class="cust-tier featured">
+      <span class="tier-badge">Most popular</span>
+      <div class="cust-tier-name">Full Week</div>
+      <div class="cust-tier-price">$129<span> / week</span></div>
+      <div class="cust-tier-sub">7 lunches + 7 dinners</div>
+      <ul>
+        <li>14 fresh meals delivered twice daily</li>
+        <li>~1,200–1,400 kcal/day</li>
+        <li>Hot lunch · 12 PM</li>
+        <li>Hot dinner · 7 PM</li>
+        <li>Vegetarian or standard rotation</li>
+        <li>Cancel anytime</li>
+      </ul>
+      <a class="btn" href="#cta-cust" style="width:100%;">Choose Full Week</a>
+    </div>
+    <div class="cust-tier">
+      <div class="cust-tier-name">Plus</div>
+      <div class="cust-tier-price">$159<span> / week</span></div>
+      <div class="cust-tier-sub">14 meals + snacks + shakes</div>
+      <ul>
+        <li>14 fresh meals delivered twice daily</li>
+        <li>7 protein snacks (afternoon)</li>
+        <li>7 whey-protein shakes</li>
+        <li>Hot lunch · 12 PM</li>
+        <li>Hot dinner · 7 PM</li>
+        <li>Cancel anytime</li>
+      </ul>
+      <a class="btn btn-outline" href="#cta-cust" style="width:100%;">Choose Plus</a>
+    </div>
+  </div>
+
+  <p class="tiny" style="text-align:center; margin-top:14px;">First-week guarantee: don't love it, get a full refund. Currently delivering in Worcester, Shrewsbury, Auburn, and Westborough.</p>
+
+  <div class="section-spacer"></div>
+
+  <!-- ===== VS SUBWAY COMPARISON ===== -->
+  <div class="section-head" id="vs-footlong">
+    <span class="eyebrow">The $7 Question</span>
+    <h2>Same price. Completely different outcomes.</h2>
+    <p class="muted" style="margin-top:8px;">You could spend $7.50 on a fast-food footlong sub with a promo deal. Or $7.00 on our bowl. Here's what the difference actually costs you.</p>
+  </div>
+
+  <div class="grid g2" style="margin-bottom:32px; position:relative;">
+    <div class="card" style="border-top:4px solid var(--terra); text-align:center; padding:24px 24px 28px;">
+      <div class="eyebrow" style="color:var(--terra);">The Other Option</div>
+      <div style="font-size:22px; font-weight:800; color:var(--ink); margin:10px 0 4px;">Footlong Sub</div>
+      <div class="tiny" style="margin-bottom:16px;">fast-food chain · promo deal · after tax</div>
+      <!-- Replace the src URL below with any free sandwich photo, e.g. from pexels.com -->
+      <div style="width:100%; height:220px; border-radius:10px; overflow:hidden; margin-bottom:20px; background:var(--terra-light); display:flex; align-items:center; justify-content:center;">
+        <img src="images/footlong-sub.png"
+             alt="Footlong Sub"
+             style="width:100%; height:100%; object-fit:cover; display:block;"
+             onerror="this.parentElement.innerHTML='<span style=&quot;font-size:12px;color:var(--terra);font-weight:600;&quot;>Drop footlong-sub.png<br>in the images/ folder</span>'">
+      </div>
+      <div style="font-size:56px; font-weight:800; color:var(--terra); line-height:1;">$7.50</div>
+      <div class="muted" style="margin-top:14px; font-size:13px; line-height:1.7;">~760 kcal &nbsp;·&nbsp; full ~2–3 hrs &nbsp;·&nbsp; blood sugar spike &nbsp;·&nbsp; ~400 g of food</div>
+    </div>
+    <div class="card" style="border-top:4px solid var(--green-dark); background:var(--green-light); text-align:center; padding:24px 24px 28px;">
+      <div class="eyebrow">Diet Feast</div>
+      <div style="font-size:22px; font-weight:800; color:var(--ink); margin:10px 0 4px;">Egg Veggie Shirataki Bowl</div>
+      <div class="tiny" style="margin-bottom:16px;">weekly subscription · per meal</div>
+      <!-- Your bowl photo goes here — save it as images/bowl.jpg -->
+      <div style="width:100%; height:220px; border-radius:10px; overflow:hidden; margin-bottom:20px; background:var(--green-light); display:flex; align-items:center; justify-content:center;">
+        <img src="images/egg_noodles.png"
+             alt="Egg Veggie Shirataki Bowl"
+             style="width:100%; height:100%; object-fit:cover; display:block;"
+             onerror="this.parentElement.innerHTML='<span style=&quot;font-size:12px;color:var(--green-dark);font-weight:600;&quot;>Drop your bowl photo<br>in the images/ folder</span>'">
+      </div>
+      <div style="font-size:56px; font-weight:800; color:var(--green-dark); line-height:1;">$7.00</div>
+      <div class="muted" style="margin-top:14px; font-size:13px; line-height:1.7;">~320 kcal &nbsp;·&nbsp; full 4–5 hrs &nbsp;·&nbsp; stable blood sugar &nbsp;·&nbsp; ~500 g of food</div>
+    </div>
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--ink); color:var(--white); border-radius:50%; width:52px; height:52px; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:14px; letter-spacing:0.04em; border:3px solid var(--cream); z-index:5;">VS</div>
+  </div>
+
+  <table class="comparison-table" style="margin-bottom:32px;">
+    <thead>
+      <tr>
+        <th style="width:32%;">What we're comparing</th>
+        <th style="width:28%; background:var(--terra);">Footlong Sub</th>
+        <th style="width:28%;">Diet Feast Bowl</th>
+        <th style="width:12%;">Winner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Price</strong></td>
+        <td>$7.50 <span class="tiny">(tax incl.)</span></td>
+        <td style="background:var(--green-light);"><strong>$7.00</strong></td>
+        <td><span class="tag tag-green" style="font-size:10px;">Our Bowl</span></td>
+      </tr>
+      <tr>
+        <td><strong>Calories per meal</strong></td>
+        <td class="no">~760 kcal</td>
+        <td class="yes" style="background:var(--green-light);">~320 kcal</td>
+        <td><span class="tag tag-green" style="font-size:10px;">Our Bowl</span></td>
+      </tr>
+      <tr>
+        <td><strong>How long you stay full</strong></td>
+        <td class="no">2–3 hrs <span class="tiny">(sugar crash follows)</span></td>
+        <td class="yes" style="background:var(--green-light);">4–5 hrs <span class="tiny">(fiber + protein)</span></td>
+        <td><span class="tag tag-green" style="font-size:10px;">Our Bowl</span></td>
+      </tr>
+      <tr>
+        <td><strong>Steps to walk it off</strong></td>
+        <td class="no">~15,200 steps <span class="tiny">(7.6 mi)</span></td>
+        <td class="yes" style="background:var(--green-light);">~6,400 steps <span class="tiny">(3.2 mi)</span></td>
+        <td><span class="tag tag-green" style="font-size:10px;">Our Bowl</span></td>
+      </tr>
+      <tr>
+        <td><strong>Net carbs</strong></td>
+        <td class="no">~90 g <span class="tiny">(mostly white bread)</span></td>
+        <td class="yes" style="background:var(--green-light);">~15 g <span class="tiny">(veggies only)</span></td>
+        <td><span class="tag tag-green" style="font-size:10px;">Our Bowl</span></td>
+      </tr>
+      <tr>
+        <td><strong>Sodium</strong></td>
+        <td class="no">~1,600 mg</td>
+        <td class="yes" style="background:var(--green-light);">~400 mg</td>
+        <td><span class="tag tag-green" style="font-size:10px;">Our Bowl</span></td>
+      </tr>
+      <tr>
+        <td><strong>Physical food volume</strong></td>
+        <td>~400 g total weight</td>
+        <td style="background:var(--green-light);"><strong>~500 g total weight</strong></td>
+        <td><span class="tag tag-green" style="font-size:10px;">Our Bowl</span></td>
+      </tr>
+      <tr>
+        <td><strong>Blood sugar response</strong></td>
+        <td class="no">High spike &rarr; crash &rarr; hunger</td>
+        <td class="yes" style="background:var(--green-light);">Low &amp; stable throughout</td>
+        <td><span class="tag tag-green" style="font-size:10px;">Our Bowl</span></td>
+      </tr>
+      <tr>
+        <td><strong>Impact on your weight goal</strong></td>
+        <td class="no">Maintenance or slow gain</td>
+        <td class="yes" style="background:var(--green-light);">Active, measurable fat loss</td>
+        <td><span class="tag tag-green" style="font-size:10px;">Our Bowl</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="grid g3" style="margin-bottom:24px;">
+    <div class="card" style="text-align:center; border-top:4px solid var(--gold);">
+      <div style="font-size:48px; font-weight:800; color:var(--gold); line-height:1;">58%</div>
+      <div style="font-weight:700; font-size:15px; margin:10px 0 6px;">Fewer calories</div>
+      <p class="muted" style="font-size:13px;">320 vs 760 kcal — you eat a bigger, heavier bowl and still take in less than half the calories.</p>
+    </div>
+    <div class="card" style="text-align:center; border-top:4px solid var(--green-dark);">
+      <div style="font-size:48px; font-weight:800; color:var(--green-dark); line-height:1;">2&times; longer</div>
+      <div style="font-weight:700; font-size:15px; margin:10px 0 6px;">Staying full</div>
+      <p class="muted" style="font-size:13px;">Glucomannan fiber from shirataki swells in your stomach. Eggs and protein slow digestion. You simply don't get hungry again as fast.</p>
+    </div>
+    <div class="card" style="text-align:center; border-top:4px solid var(--terra);">
+      <div style="font-size:48px; font-weight:800; color:var(--terra); line-height:1;">~4 lbs</div>
+      <div style="font-weight:700; font-size:15px; margin:10px 0 6px;">Fat saved per month</div>
+      <p class="muted" style="font-size:13px;">Swapping a daily footlong for our bowl saves ~440 kcal/day — nearly 4 lbs of pure fat per month without changing a single other habit.</p>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>The math:</strong> 440 fewer calories at lunch, every day &times; 30 days = 13,200 kcal saved. At 3,500 kcal per pound of fat, that's <strong>~3.8 lbs of fat lost per month</strong> from one single change — just swapping your lunch.
+  </div>
+
+  <div class="section-spacer"></div>
+  <div class="section-head">
+    <span class="eyebrow">Why Diet Feast works</span>
+    <h2>Volume eating, dietitian-built, science-backed.</h2>
+  </div>
+
+  <div class="grid g2">
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg class="svg-icon" stroke="#2F7344" viewBox="0 0 24 24"><path d="M12 21l-7-7 4-4 3 3 7-7 4 4z"/></svg>
+      </div>
+      <div>
+        <h4>You eat MORE food, not less</h4>
+        <p class="muted">Every meal is built around cabbage, vegetables, eggs, chicken, and shirataki — foods with the highest volume-to-calorie ratio. Bigger plates than your old "diet" plates.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg class="svg-icon" stroke="#2F7344" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+      </div>
+      <div>
+        <h4>100+ g of protein per day, automatic</h4>
+        <p class="muted">Protein protects muscle while you lose fat, and keeps you full longer than carbs or fat. Every meal hits the right macros so you don't have to count.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg class="svg-icon" stroke="#2F7344" viewBox="0 0 24 24"><path d="M3 12l4 4 14-14"/></svg>
+      </div>
+      <div>
+        <h4>No decision fatigue</h4>
+        <p class="muted">Open the box. Follow the card. Eat. Every "what should I eat" moment is already answered for you. The single biggest reason diets fail — eliminated.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg class="svg-icon" stroke="#2F7344" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div>
+        <h4>Zero cooking. Zero dishes.</h4>
+        <p class="muted">Meals arrive hot, twice daily — lunch at noon, dinner at 7 PM. Open the container, eat the food, toss the compostable packaging. That's it.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg class="svg-icon" stroke="#2F7344" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <div>
+        <h4>Sourced locally in Worcester County</h4>
+        <p class="muted">Eggs from Massachusetts farms. Chicken from regional suppliers. Produce from New England distributors. Lower carbon, fresher food.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg class="svg-icon" stroke="#2F7344" viewBox="0 0 24 24"><path d="M12 2v20M5 9l7-7 7 7"/></svg>
+      </div>
+      <div>
+        <h4>1–2 lbs per week, sustainably</h4>
+        <p class="muted">No crash diet. No starvation. No magic pill. Just consistent, evidence-based weight loss at a rate clinical research validates as safe and lasting.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-spacer"></div>
+  <div class="section-head">
+    <span class="eyebrow">FAQ</span>
+    <h2>Questions, answered.</h2>
+  </div>
+
+  <div class="faq-item">
+    <h4>How much weight will I actually lose?</h4>
+    <p>Most members lose 4–7 lbs in the first month, then 2–4 lbs/month for the next 3–4 months. Expect 18–25 lbs over 6 months at the Full Week plan, assuming you follow it and add 30 min of daily walking. Results vary with starting weight, activity, and consistency.</p>
+  </div>
+  <div class="faq-item">
+    <h4>Will I be hungry?</h4>
+    <p>Almost never. Volume eating is the whole point. Each meal contains 2–3x the food volume of a typical "diet" meal because the calories come from low-density, high-fiber, high-protein foods. Most members report being full all day.</p>
+  </div>
+  <div class="faq-item">
+    <h4>How is this different from HelloFresh, Factor, or Sweetgreen?</h4>
+    <p>HelloFresh makes you cook and isn't designed for weight loss. Factor is frozen and runs $13–17/meal. Sweetgreen is great but $14–18 per visit and you go to them. Diet Feast is the only service that delivers hot, fresh meals to your door twice a day, built specifically for weight loss, at $6–9 per meal.</p>
+  </div>
+  <div class="faq-item">
+    <h4>What if I don't like an ingredient?</h4>
+    <p>Onboarding form lets you exclude up to 5 ingredients (e.g., no beef, no celery, no shellfish, no mushrooms). You also pick vegetarian or standard each week.</p>
+  </div>
+  <div class="faq-item">
+    <h4>Do I need to cook?</h4>
+    <p>No. Every meal arrives hot and ready to eat. Open the container, eat the food. We deliver lunch at noon and dinner at 7 PM. The only thing in your kitchen you'll use is a fork.</p>
+  </div>
+  <div class="faq-item">
+    <h4>What if I have a food allergy or medical condition?</h4>
+    <p>List allergies during signup — we'll flag your account and never include those ingredients. For specific medical conditions (diabetes, kidney disease, etc.), please consult your physician before starting any weight-loss meal plan. We're a food service, not a medical service.</p>
+  </div>
+  <div class="faq-item">
+    <h4>What if I'm not home at lunch or dinner time?</h4>
+    <p>Meals come in insulated, food-safe containers that stay safe at room temperature for 3+ hours. Most members stash lunch in the office fridge or eat it when they get home. Delivery windows are ±30 minutes.</p>
+  </div>
+
+  <div class="cta-strip" id="cta-cust">
+    <h2>Eat Big. Stay Lean.</h2>
+    <p class="lead">Your first lunch lands Monday at noon.</p>
+    <a class="btn btn-warm" href="#" style="background:var(--lime); color:var(--ink);">Start your week — $89</a>
+    <p class="tiny" style="margin-top:16px; color:rgba(255,255,255,0.7);">First-week guarantee · No commitment · Cancel anytime</p>
+  </div>
+
+</div>
+
+</section>
+
+<!-- ===================== INVESTOR SECTION ===================== -->
+<section id="investor" class="section">
+
+<div class="hero-invest">
+  <span class="tag" style="background:rgba(255,255,255,0.15); color:white;">Series Seed · $500K · Worcester, MA</span>
+  <h1 style="margin-top:16px;">Diet <span style="color:var(--lime);">Feast</span></h1>
+  <p class="lead" style="font-size:22px; font-weight:600; color:var(--lime); letter-spacing:0.02em;">Eat Big. Stay Lean.</p>
+  <p class="lead">A weight-loss meal subscription built around volume eating, local sourcing, and zero-decision delivery — solving the only problem the $76B U.S. weight-loss industry hasn't: adherence.</p>
+  <div class="hero-stat-strip">
+    <div class="hero-stat">
+      <span class="hero-stat-num">42%</span>
+      <span class="hero-stat-lbl">US adults are obese</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">$76B</span>
+      <span class="hero-stat-lbl">US weight-loss market</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">$64B</span>
+      <span class="hero-stat-lbl">Meal kit market by 2030</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">95%</span>
+      <span class="hero-stat-lbl">of diets fail. We fix this.</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section-head">
+    <span class="eyebrow">The problem</span>
+    <h2>Diets fail because of friction, not willpower.</h2>
+  </div>
+
+  <div class="grid g3">
+    <div class="problem-stat">
+      <div class="big-num">$320</div>
+      <h4 style="margin-top:6px;">Avg monthly grocery spend</h4>
+      <p class="muted">Single adult, US average. Most of it wasted on impulse buys, food rot, and high-calorie convenience items.</p>
+    </div>
+    <div class="problem-stat">
+      <div class="big-num">4h+</div>
+      <h4 style="margin-top:6px;">Weekly planning load</h4>
+      <p class="muted">Planning, shopping, prepping, dishes. The cognitive cost of "what's for dinner" is the #1 reason diets collapse by week 3.</p>
+    </div>
+    <div class="problem-stat">
+      <div class="big-num">73%</div>
+      <h4 style="margin-top:6px;">US adults overweight or obese</h4>
+      <p class="muted">Demand is universal. Existing solutions (gyms, pills, fad diets, generic meal kits) under-serve the population that needs them most.</p>
+    </div>
+  </div>
+
+  <p class="lead" style="margin-top:32px; text-align:center; max-width:780px; margin-left:auto; margin-right:auto;">
+    Existing meal kits (HelloFresh, Blue Apron) aren't built for weight loss. Medical programs (Noom, WW) sell tracking — not food. Frozen-meal services (Factor, Trifecta) cost $13–17/meal and feel like punishment.
+    <br><br>
+    <strong>No one is doing dietitian-built, volume-first, locally-sourced, $6/meal weight-loss kits.</strong> We are.
+  </p>
+
+  <div class="section-spacer"></div>
+  <div class="section-head">
+    <span class="eyebrow">Our solution</span>
+    <h2>Three pillars that compound into adherence.</h2>
+  </div>
+
+  <div class="grid g3">
+    <div class="pillar">
+      <div class="pillar-icon">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 8h18M3 12h18M3 16h12"/></svg>
+      </div>
+      <h3>Volume-first menus</h3>
+      <p class="muted">Cabbage, shirataki, eggs, chicken, vegetables — engineered for maximum plate size at minimum calories. Members eat more, not less. Satiety drives compliance.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 12l3-3 4 4 8-8 3 3"/></svg>
+      </div>
+      <h3>Local sourcing, low COGS</h3>
+      <p class="muted">Direct relationships with MA farms and regional poultry processors cut ingredient cost 30–40% vs. HelloFresh. Lower price, higher margin, fresher product.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">
+        <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+      </div>
+      <h3>Twice-daily fresh delivery</h3>
+      <p class="muted">Hot lunch at noon, hot dinner at 7 PM. Never frozen. Zero cooking. The "what should I eat?" question is eliminated — the only diet variable that actually predicts success.</p>
+    </div>
+  </div>
+
+  <div class="section-spacer"></div>
+  <div class="section-head">
+    <span class="eyebrow">Market</span>
+    <h2>A massive, underserved wedge of two giant markets.</h2>
+  </div>
+
+  <div class="grid g2" style="align-items:center;">
+    <div>
+      <h3>TAM · SAM · SOM</h3>
+      <div class="econ-row">
+        <span><strong>TAM</strong> — US adults overweight + meal kit users</span>
+        <strong style="color:var(--green-dark);">$24B</strong>
+      </div>
+      <div class="econ-row">
+        <span><strong>SAM</strong> — New England, $50K+ HHI, weight-loss intent</span>
+        <strong style="color:var(--green-dark);">$1.4B</strong>
+      </div>
+      <div class="econ-row">
+        <span><strong>SOM</strong> — Worcester County, year 1</span>
+        <strong style="color:var(--green-dark);">$28M</strong>
+      </div>
+      <p class="muted" style="margin-top:14px;">Worcester County alone: 830K residents, 32% adult obesity rate = 265K people. Capture 1% of obese adults at $129/week = $17.7M ARR from Worcester alone.</p>
+    </div>
+    <div class="card">
+      <h4>US meal-kit market growth ($B)</h4>
+      <div class="bar-chart" style="margin-top:30px;">
+        <div class="bar" style="height:30%;"><span class="bar-val">$11</span><span class="bar-lbl">2020</span></div>
+        <div class="bar" style="height:50%;"><span class="bar-val">$19</span><span class="bar-lbl">2024</span></div>
+        <div class="bar" style="height:70%;"><span class="bar-val">$32</span><span class="bar-lbl">2027</span></div>
+        <div class="bar" style="height:95%;"><span class="bar-val">$64</span><span class="bar-lbl">2030</span></div>
+      </div>
+      <p class="tiny" style="margin-top:14px;">Source: Grand View Research, Allied Market Research aggregated estimates.</p>
+    </div>
+  </div>
+
+  <div class="section-spacer"></div>
+  <div class="section-head">
+    <span class="eyebrow">Business model</span>
+    <h2>Subscription. Three tiers. Predictable revenue.</h2>
+  </div>
+
+  <div class="grid g3">
+    <div class="tier">
+      <div class="cust-tier-name">Lite</div>
+      <div class="tier-price">$89<span> / wk</span></div>
+      <ul>
+        <li>10 meals (Mon–Fri, lunch + dinner)</li>
+        <li>Twice-daily fresh delivery</li>
+        <li>~$3,479 LTV @ 9 mo retention</li>
+      </ul>
+    </div>
+    <div class="tier featured">
+      <span class="tier-badge">Anchor SKU</span>
+      <div class="cust-tier-name">Full Week</div>
+      <div class="tier-price">$129<span> / wk</span></div>
+      <ul>
+        <li>14 meals (7 lunches + 7 dinners)</li>
+        <li>Twice-daily fresh delivery</li>
+        <li>~$5,043 LTV @ 9 mo retention</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <div class="cust-tier-name">Plus</div>
+      <div class="tier-price">$159<span> / wk</span></div>
+      <ul>
+        <li>14 meals + 7 snacks + 7 shakes</li>
+        <li>Twice-daily fresh delivery</li>
+        <li>~$6,216 LTV @ 9 mo retention</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="muted" style="text-align:center; margin-top:14px;">Projected mix: 25% Lite / 60% Full Week / 15% Plus. <strong>Blended ARPU: $122/week, $6,344/year.</strong></p>
+
+  <div class="section-spacer"></div>
+  <div class="section-head">
+    <span class="eyebrow">Unit economics</span>
+    <h2>Profitable from week 1.</h2>
+  </div>
+
+  <div class="financials">
+    <div class="card card-dark">
+      <h4 style="color:var(--gold);">Per Full Week customer · weekly (14 meals)</h4>
+      <div class="econ-row" style="border-color:rgba(255,255,255,0.15);">
+        <span>Revenue</span><strong>$129.00</strong>
+      </div>
+      <div class="econ-row" style="border-color:rgba(255,255,255,0.15);">
+        <span>Ingredients (14 × $2.50, local)</span><strong>-$35.00</strong>
+      </div>
+      <div class="econ-row" style="border-color:rgba(255,255,255,0.15);">
+        <span>Hot-meal packaging (compostable)</span><strong>-$8.40</strong>
+      </div>
+      <div class="econ-row" style="border-color:rgba(255,255,255,0.15);">
+        <span>Kitchen labor (cook + portion)</span><strong>-$12.60</strong>
+      </div>
+      <div class="econ-row" style="border-color:rgba(255,255,255,0.15);">
+        <span>Twice-daily delivery (14 drops, batched)</span><strong>-$16.20</strong>
+      </div>
+      <div class="econ-row" style="border-color:rgba(255,255,255,0.15);">
+        <span>Payment processing (2.9%)</span><strong>-$3.74</strong>
+      </div>
+      <div class="econ-row">
+        <span style="color:var(--gold);"><strong>Contribution margin</strong></span><strong style="color:var(--gold);">$53.06 (41%)</strong>
+      </div>
+    </div>
+    <div class="card">
+      <h4>Cohort economics</h4>
+      <div class="econ-row"><span>CAC (paid + referral blend)</span><strong>$48</strong></div>
+      <div class="econ-row"><span>Avg retention</span><strong>9.0 months</strong></div>
+      <div class="econ-row"><span>LTV (gross contribution)</span><strong>$2,073</strong></div>
+      <div class="econ-row"><span>LTV : CAC</span><strong style="color:var(--green-dark);">43 : 1</strong></div>
+      <div class="econ-row"><span>Payback period</span><strong>~6.3 days</strong></div>
+      <div class="econ-row"><span>Gross margin at scale</span><strong>50% (Y2)</strong></div>
+      <p class="muted" style="margin-top:14px;">Twice-daily delivery cost compresses with route density (more subscribers per neighborhood = lower drop cost). Ingredient cost drops with volume buying. Target 58%+ gross margin by Y3.</p>
+    </div>
+  </div>
+
+  <div class="section-spacer"></div>
+  <div class="section-head">
+    <span class="eyebrow">Financial projections</span>
+    <h2>$2.4M ARR by month 18. $14M by year 3.</h2>
+  </div>
+
+  <table class="comparison-table">
+    <thead>
+      <tr><th>Period</th><th>Active subscribers</th><th>ARR</th><th>Gross profit</th><th>EBITDA</th><th>Cash burn / month</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Month 3 (MVP)</td><td>50</td><td>$320K</td><td>$140K</td><td>-$28K</td><td>$22K</td></tr>
+      <tr><td>Month 6</td><td>180</td><td>$1.15M</td><td>$507K</td><td>-$12K</td><td>$14K</td></tr>
+      <tr><td>Month 12</td><td>400</td><td>$2.56M</td><td>$1.13M</td><td>+$36K</td><td>Profitable</td></tr>
+      <tr><td>Month 18</td><td>720</td><td>$4.6M</td><td>$2.07M</td><td>+$210K</td><td>Profitable</td></tr>
+      <tr><td>Year 3</td><td>2,200</td><td>$14.1M</td><td>$7.3M</td><td>+$2.1M</td><td>Profitable</td></tr>
+    </tbody>
+  </table>
+
+  <p class="muted" style="margin-top:12px;">Assumes: blended $129/week ARPU · 5% monthly churn (industry-leading for meal kits) · 8% MoM growth post-MVP via referral + paid Meta/Instagram · expansion to Boston metro in month 14.</p>
+
+  <div class="section-spacer"></div>
+  <div class="section-head">
+    <span class="eyebrow">Roadmap</span>
+    <h2>From MVP to regional leader in 24 months.</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="phase">
+      <h4>Phase 1 · Months 1–3 · MVP in Worcester (5-mile radius)</h4>
+      <p class="muted">Lease 800 sq ft commercial kitchen central to Worcester. Hire chef + 2 cooks + 2 part-time drivers. Launch with 50 founding members ($89 founder pricing) within a tight 5-mile radius. Prove twice-daily delivery economics, refine menu, capture testimonials.</p>
+    </div>
+    <div class="phase">
+      <h4>Phase 2 · Months 4–9 · Worcester County scale-up</h4>
+      <p class="muted">Grow to 250 active subscribers. Expand delivery radius to Shrewsbury, Auburn, Westborough, Holden, Leominster. Hire ops manager + 4 more kitchen staff + 4 more drivers. Begin paid acquisition on Meta. Add vegetarian menu and Plus tier.</p>
+    </div>
+    <div class="phase">
+      <h4>Phase 3 · Months 10–18 · Boston metro launch</h4>
+      <p class="muted">Open second kitchen (Framingham or Waltham) to anchor Boston-suburban delivery radius. 720 subscribers across both kitchens. Twice-daily delivery model requires kitchen-per-region — capital-intensive but defensible. Series A target (~$3M).</p>
+    </div>
+    <div class="phase">
+      <h4>Phase 4 · Year 2–3 · New England regional brand</h4>
+      <p class="muted">Open kitchens in Providence RI, Hartford CT, southern NH (~one kitchen per metro). 2,200+ subscribers. Launch corporate wellness B2B (deliver to offices, bulk discount). Strategic partnerships with employer benefit platforms. Explore acquisition / Series B.</p>
+    </div>
+  </div>
+
+  <div class="section-spacer"></div>
+  <div class="section-head">
+    <span class="eyebrow">Competition</span>
+    <h2>We win on the four things that actually matter.</h2>
+  </div>
+
+  <table class="comparison-table">
+    <thead>
+      <tr><th>Service</th><th>Weight-loss focus</th><th>Cost / meal</th><th>Cooking required</th><th>Delivery cadence</th><th>Hot when delivered</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Diet Feast</strong></td><td class="yes">Purpose-built</td><td><strong>$9.21</strong></td><td class="yes">None</td><td><strong>Twice daily</strong></td><td class="yes">Hot, fresh</td></tr>
+      <tr><td>HelloFresh</td><td class="no">No</td><td>$8.99</td><td class="no">30–45 min</td><td>Weekly box</td><td class="no">Raw kit</td></tr>
+      <tr><td>Factor</td><td>Partially</td><td>$13.49</td><td class="yes">None (microwave)</td><td>Weekly box</td><td class="no">Frozen</td></tr>
+      <tr><td>Sweetgreen</td><td>Partially</td><td>$14–18</td><td class="yes">None</td><td>You go to them</td><td class="yes">Hot in-store</td></tr>
+      <tr><td>Trifecta</td><td>Yes</td><td>$15.99</td><td class="yes">None (microwave)</td><td>Weekly box</td><td class="no">Cold/frozen</td></tr>
+      <tr><td>Noom / WW</td><td class="yes">App only</td><td>N/A</td><td>—</td><td>None</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <p class="muted" style="margin-top:12px;">Our wedge: <strong>twice-daily hot delivery + weight-loss-purpose + lowest cost-per-meal among ready-to-eat services</strong>. No competitor combines these three.</p>
+
+  <div class="section-spacer"></div>
+  <div class="section-head">
+    <span class="eyebrow">The ask</span>
+    <h2>$500K seed for 18 months runway.</h2>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4 style="color:var(--green-dark);">Use of funds</h4>
+      <div class="econ-row"><span>Commercial kitchen lease + buildout</span><strong>$140K</strong></div>
+      <div class="econ-row"><span>Initial inventory + equipment</span><strong>$60K</strong></div>
+      <div class="econ-row"><span>Team (3 hires Y1)</span><strong>$165K</strong></div>
+      <div class="econ-row"><span>Marketing + paid acquisition</span><strong>$80K</strong></div>
+      <div class="econ-row"><span>Delivery vehicles + logistics</span><strong>$35K</strong></div>
+      <div class="econ-row"><span>Working capital + contingency</span><strong>$20K</strong></div>
+    </div>
+    <div class="card card-warm">
+      <h4 style="color:white;">What we need beyond capital</h4>
+      <ul style="list-style:none; margin-top:10px;">
+        <li style="padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.2);"><strong>Co-founder · COO/Ops</strong> — kitchen operations, food safety, last-mile delivery routing. 5+ yrs food ops or QSR background.</li>
+        <li style="padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.2);"><strong>Head chef · Menu lead</strong> — production scaling expertise, menu rotation, batch-cook efficiency at twice-daily cadence.</li>
+        <li style="padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.2);"><strong>Strategic intros</strong> — Worcester gyms, corporate HR/wellness leads, apartment-building partnerships for bulk delivery.</li>
+        <li style="padding:8px 0;"><strong>Follow-on commitment</strong> — Series A lead for Boston-kitchen expansion in month 14.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cta-strip">
+    <h2>Let's build the meal subscription weight loss deserves.</h2>
+    <p class="lead">Vamsi · Founder · vamsy.24@gmail.com · Worcester, MA</p>
+    <a class="btn btn-warm" href="mailto:vamsy.24@gmail.com" style="background:var(--lime); color:var(--ink);">Schedule a 30-min intro</a>
+  </div>
+
+</div>
+
+</section>
+
+<!-- ===================== PERSONAL SECTION ===================== -->
+<section id="personal" class="section">
+
+<div class="container">
+
+  <div class="section-head">
+    <span class="eyebrow">Your weight-loss plan</span>
+    <h2>Vamsi · 7-day plan · Worcester edition</h2>
+    <p class="muted" style="max-width:680px; margin:8px auto 0;">Aggressive but safe. Built around your real sourcing: Walmart Tobias Boland, the meat shop next to Patel's in Shrewsbury, Costco via Instacart. No celery, no beef, no apples.</p>
+  </div>
+
+  <div class="profile-grid">
+    <div class="stat-card">
+      <div class="stat-num">96 kg</div>
+      <div class="stat-lbl">Current weight</div>
+      <div class="stat-sub">211 lbs</div>
+    </div>
+    <div class="stat-card" style="border-left-color:var(--terra);">
+      <div class="stat-num" style="color:var(--terra);">35.3</div>
+      <div class="stat-lbl">Current BMI</div>
+      <div class="stat-sub">Class II obesity</div>
+    </div>
+    <div class="stat-card" style="border-left-color:var(--gold);">
+      <div class="stat-num" style="color:var(--gold);">~68 kg</div>
+      <div class="stat-lbl">Goal weight</div>
+      <div class="stat-sub">BMI 25 · 6–9 months</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">1,200</div>
+      <div class="stat-lbl">Daily kcal target</div>
+      <div class="stat-sub">~1 kg / week loss</div>
+    </div>
+  </div>
+
+  <div class="subhead"><h3>Weekly cost summary</h3></div>
+
+  <div class="grid g4">
+    <div class="card">
+      <div class="stat-num" style="color:var(--green-dark); font-size:24px;">$48</div>
+      <div class="stat-lbl">This week (food only)</div>
+    </div>
+    <div class="card">
+      <div class="stat-num" style="color:var(--green-dark); font-size:24px;">$6</div>
+      <div class="stat-lbl">Whey amortized / week</div>
+      <div class="stat-sub">$50 / 8 weeks Costco</div>
+    </div>
+    <div class="card">
+      <div class="stat-num" style="color:var(--green-dark); font-size:24px;">$54</div>
+      <div class="stat-lbl">Total weekly cost</div>
+    </div>
+    <div class="card" style="background:var(--green-dark); color:white;">
+      <div class="stat-num" style="color:var(--gold); font-size:24px;">$195</div>
+      <div class="stat-lbl" style="color:rgba(255,255,255,0.85);">Monthly total</div>
+      <div class="stat-sub" style="color:rgba(255,255,255,0.65);">Fits your $150–200 budget</div>
+    </div>
+  </div>
+
+  <div class="subhead"><h3>Where to buy what — your weekly shopping list</h3></div>
+
+  <div class="grid g2">
+    <div class="store">
+      <div class="store-head">
+        <div>
+          <div class="store-name">Walmart Tobias Boland</div>
+          <div class="store-loc">Tobias Boland Way, Worcester</div>
+        </div>
+        <div class="store-total">$22</div>
+      </div>
+      <ul class="store-list">
+        <li class="store-item"><span>60 large eggs (lasts 2 weeks)</span><span class="price">$9</span></li>
+        <li class="store-item"><span>Plain nonfat Greek yogurt · 32 oz</span><span class="price">$4</span></li>
+        <li class="store-item"><span>Firm tofu · 14 oz</span><span class="price">$2.50</span></li>
+        <li class="store-item"><span>Dry lentils · 1 lb (red or brown)</span><span class="price">$2</span></li>
+        <li class="store-item"><span>Frozen broccoli · 16 oz</span><span class="price">$1.99</span></li>
+        <li class="store-item"><span>Frozen spinach · 16 oz</span><span class="price">$2</span></li>
+        <li class="store-item"><span>Lemons · 5</span><span class="price">$2.50</span></li>
+      </ul>
+      <p class="tiny" style="margin-top:10px;">60-egg flat is the best deal in Worcester. Use 2 whole + 4 whites per meal — separate at point of cooking. Refrigerate, lasts 4–5 weeks.</p>
+    </div>
+    <div class="store">
+      <div class="store-head">
+        <div>
+          <div class="store-name">Meat shop · Shrewsbury</div>
+          <div class="store-loc">Next to Patel Bros, Boston Turnpike</div>
+        </div>
+        <div class="store-total">$9</div>
+      </div>
+      <ul class="store-list">
+        <li class="store-item"><span>Chicken legs · 3 lb @ $3/lb</span><span class="price">$9</span></li>
+      </ul>
+      <p class="tiny" style="margin-top:10px;">Chicken legs at $3/lb beat breast at $5/lb by 40%. Remove skin before cooking to cut fat ~7g per leg. Drumstick + thigh meat is more flavorful, more iron, more zinc. Use across 5–6 dinners this week.</p>
+      <div class="tip-box" style="margin-top:12px;">
+        <strong>Tip:</strong> ask for "skinless chicken leg quarters" — they'll often skin them for free.
+      </div>
+    </div>
+    <div class="store">
+      <div class="store-head">
+        <div>
+          <div class="store-name">Patel Brothers · Shrewsbury</div>
+          <div class="store-loc">Boston Turnpike</div>
+        </div>
+        <div class="store-total">$5</div>
+      </div>
+      <ul class="store-list">
+        <li class="store-item"><span>Toor or moong dal · 2 lb</span><span class="price">$3</span></li>
+        <li class="store-item"><span>Garam masala / cumin / turmeric refill</span><span class="price">$2</span></li>
+      </ul>
+      <p class="tiny" style="margin-top:10px;">Patel's lentil prices are ~40% lower than Walmart. Spice section is unbeatable. Pick up 1 lb whole cumin once and grind as needed — fresher and 5x cheaper than pre-ground.</p>
+    </div>
+    <div class="store">
+      <div class="store-head">
+        <div>
+          <div class="store-name">Aldi or Market Basket</div>
+          <div class="store-loc">Lincoln St Aldi · Oxford Market Basket</div>
+        </div>
+        <div class="store-total">$18</div>
+      </div>
+      <ul class="store-list">
+        <li class="store-item"><span>Green cabbage · 2 heads</span><span class="price">$4</span></li>
+        <li class="store-item"><span>Cucumbers · 5</span><span class="price">$3.50</span></li>
+        <li class="store-item"><span>Yellow onions · 3 lb bag</span><span class="price">$3</span></li>
+        <li class="store-item"><span>Tomatoes · 2 lb</span><span class="price">$3</span></li>
+        <li class="store-item"><span>Carrots · 2 lb bag</span><span class="price">$2</span></li>
+        <li class="store-item"><span>White mushrooms · 8 oz</span><span class="price">$2.50</span></li>
+      </ul>
+      <p class="tiny" style="margin-top:10px;">Aldi wins on per-item cost. Market Basket wins on selection and weekly produce deals. Hit whichever is closer this week.</p>
+    </div>
+    <div class="store">
+      <div class="store-head">
+        <div>
+          <div class="store-name">Costco · via Instacart</div>
+          <div class="store-loc">Bulk · every 2 months</div>
+        </div>
+        <div class="store-total">$50 / 8 weeks</div>
+      </div>
+      <ul class="store-list">
+        <li class="store-item"><span>Whey protein · 5 lb tub</span><span class="price">$50</span></li>
+      </ul>
+      <p class="tiny" style="margin-top:10px;">~80 servings per tub. Use 1 scoop (24 g protein, 120 kcal) post-workout or as a quick meal-replacement breakfast. Cheapest protein per gram of any source you can buy.</p>
+    </div>
+    <div class="store">
+      <div class="store-head">
+        <div>
+          <div class="store-name">Optional · Asian market</div>
+          <div class="store-loc">Worcester · Park Ave area</div>
+        </div>
+        <div class="store-total">$8 (3 packs)</div>
+      </div>
+      <ul class="store-list">
+        <li class="store-item"><span>Shirataki / konjac noodles · 3 packs</span><span class="price">$6</span></li>
+        <li class="store-item"><span>Bean sprouts · 12 oz</span><span class="price">$2</span></li>
+      </ul>
+      <p class="tiny" style="margin-top:10px;">Shirataki is cheapest at Asian markets ($1.50–2/pack vs $2.50–3 at mainstream chains). Use 3 nights/week — cabbage covers the rest.</p>
+    </div>
+  </div>
+
+  <div class="subhead"><h3>Your 7-day timeline</h3></div>
+
+  <div class="day-card">
+    <div class="day-head">
+      <h3>Day 1 · Monday</h3>
+      <div class="day-macros">
+        <span><strong>1,185</strong>kcal</span>
+        <span><strong>112g</strong>protein</span>
+        <span><strong>38g</strong>fiber</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="meal">
+        <div class="meal-time"><strong>8 AM</strong><span>Breakfast</span></div>
+        <div class="meal-content">
+          <h4>Veggie egg scramble + cucumber side</h4>
+          <p class="meal-recipe">5 egg whites + 1 whole egg scrambled in 1 tsp oil with chopped onion, tomato, frozen spinach, turmeric, salt, pepper. 1 sliced cucumber with lemon & chili powder.</p>
+          <div class="meal-stats">
+            <span class="stat">280 kcal</span><span class="stat">32 g P</span><span class="stat">6 g fiber</span><span class="stat">10 min</span>
+          </div>
+          <div class="benefit">✓ High satiety from protein. Choline supports liver function. Spinach gives iron + magnesium.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>11 AM</strong><span>Snack</span></div>
+        <div class="meal-content">
+          <h4>Veg broth + cucumber sticks</h4>
+          <p class="meal-recipe">2 cups homemade broth (cabbage cores + onion + garlic + salt + pepper, simmered 20 min). Cucumber sticks with chaat masala.</p>
+          <div class="meal-stats"><span class="stat">40 kcal</span><span class="stat">2 g P</span></div>
+          <div class="benefit">✓ Clinical trick to suppress hunger. Hot fluid + sodium = full feeling for 90 min.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>1 PM</strong><span>Lunch</span></div>
+        <div class="meal-content">
+          <h4>Lemon-chicken slaw bowl</h4>
+          <p class="meal-recipe">2.5 cups shredded green cabbage + ½ cup shredded carrot + chopped tomato + onion. Top with 5 oz pan-cooked chicken leg meat (skin off, 1 tsp oil, garlic powder, paprika, cumin). Dressing: 3 tbsp Greek yogurt + lemon + dill + salt. ¼ cup cooked lentils on the side.</p>
+          <div class="meal-stats"><span class="stat">390 kcal</span><span class="stat">40 g P</span><span class="stat">12 g fiber</span><span class="stat">15 min</span></div>
+          <div class="benefit">✓ Cabbage = volume. Chicken legs = high protein + iron + zinc. Lentils = fiber, B vitamins, sustained energy.</div>
+          <div class="precaution">⚠ Always cook chicken to 165°F internal. Use a $10 meat thermometer.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>5 PM</strong><span>Snack</span></div>
+        <div class="meal-content">
+          <h4>Greek yogurt + cinnamon</h4>
+          <p class="meal-recipe">6 oz plain nonfat Greek yogurt with cinnamon and ½ tsp honey (optional).</p>
+          <div class="meal-stats"><span class="stat">100 kcal</span><span class="stat">17 g P</span></div>
+          <div class="benefit">✓ Casein protein digests slowly. Calcium for bone. Probiotic bacteria for gut.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>8 PM</strong><span>Dinner</span></div>
+        <div class="meal-content">
+          <h4>Shirataki garlic-chili stir-fry</h4>
+          <p class="meal-recipe">1 pack shirataki (rinsed + dry-toasted 3 min) + 1 cup frozen broccoli + ½ cup mushrooms + ½ chopped bell pepper. 4 oz diced chicken leg meat sautéed in 1 tsp sesame oil with garlic, ginger, 1 tbsp soy sauce, chili flakes.</p>
+          <div class="meal-stats"><span class="stat">375 kcal</span><span class="stat">32 g P</span><span class="stat">9 g fiber</span><span class="stat">12 min</span></div>
+          <div class="benefit">✓ Shirataki glucomannan expands in stomach. Mushrooms add umami + vitamin D. Sesame oil = healthy fats.</div>
+          <div class="precaution">⚠ Take any medications 1 hour before or 2 hours after konjac — glucomannan slows absorption.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head">
+      <h3>Day 2 · Tuesday</h3>
+      <div class="day-macros">
+        <span><strong>1,210</strong>kcal</span>
+        <span><strong>108g</strong>protein</span>
+        <span><strong>36g</strong>fiber</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="meal">
+        <div class="meal-time"><strong>8 AM</strong><span>Breakfast</span></div>
+        <div class="meal-content">
+          <h4>Greek yogurt parfait + oats</h4>
+          <p class="meal-recipe">200 g plain nonfat Greek yogurt + 2 tbsp rolled oats + cinnamon + ½ scoop whey if hungry. Add a few frozen berries if you have any.</p>
+          <div class="meal-stats"><span class="stat">270 kcal</span><span class="stat">28 g P</span><span class="stat">4 g fiber</span><span class="stat">3 min</span></div>
+          <div class="benefit">✓ Oats give beta-glucan fiber (cholesterol-lowering). Yogurt protein + slow oat carbs = stable energy until lunch.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>11 AM</strong><span>Snack</span></div>
+        <div class="meal-content">
+          <h4>2 hard-boiled eggs (whites only)</h4>
+          <p class="meal-recipe">Boil eggs, peel, discard yolks. Eat with black salt and pepper.</p>
+          <div class="meal-stats"><span class="stat">35 kcal</span><span class="stat">7 g P</span></div>
+          <div class="benefit">✓ Zero-fat protein. Resets afternoon hunger without adding calories.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>1 PM</strong><span>Lunch</span></div>
+        <div class="meal-content">
+          <h4>Cabbage tabouli + chicken</h4>
+          <p class="meal-recipe">3 cups finely chopped cabbage + cucumber + tomato + onion + lots of fresh parsley/cilantro + lemon + 1 tsp olive oil + salt. Top with 4 oz cold cooked chicken leg from yesterday's batch.</p>
+          <div class="meal-stats"><span class="stat">385 kcal</span><span class="stat">36 g P</span><span class="stat">10 g fiber</span><span class="stat">8 min</span></div>
+          <div class="benefit">✓ Raw cabbage = max volume. Lemon aids iron absorption from cabbage. No-cook lunch saves time.</div>
+          <div class="precaution">⚠ Refrigerate cooked chicken at or below 40°F. Eat within 3–4 days.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>5 PM</strong><span>Snack</span></div>
+        <div class="meal-content">
+          <h4>Whey shake</h4>
+          <p class="meal-recipe">1 scoop whey + 250 ml water + ice + cinnamon. Shake.</p>
+          <div class="meal-stats"><span class="stat">125 kcal</span><span class="stat">24 g P</span></div>
+          <div class="benefit">✓ Cheapest protein per gram. Fast-absorbing for post-walk recovery.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>8 PM</strong><span>Dinner</span></div>
+        <div class="meal-content">
+          <h4>Chicken-cabbage curry bowl</h4>
+          <p class="meal-recipe">Sauté onion + ginger + garlic + chopped tomato in 1 tsp oil. Add 5 oz chicken leg pieces, turmeric, garam masala, chili powder. Add 2 cups shredded cabbage. Simmer with ½ cup water until cabbage is tender. Garnish with cilantro. ⅓ cup cooked lentils on side.</p>
+          <div class="meal-stats"><span class="stat">395 kcal</span><span class="stat">39 g P</span><span class="stat">11 g fiber</span><span class="stat">25 min</span></div>
+          <div class="benefit">✓ Cabbage absorbs curry flavor. Turmeric (curcumin) is anti-inflammatory. Comfort food without the rice calories.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head">
+      <h3>Day 3 · Wednesday</h3>
+      <div class="day-macros">
+        <span><strong>1,195</strong>kcal</span>
+        <span><strong>115g</strong>protein</span>
+        <span><strong>40g</strong>fiber</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="meal">
+        <div class="meal-time"><strong>8 AM</strong><span>Breakfast</span></div>
+        <div class="meal-content">
+          <h4>Spinach-mushroom omelet</h4>
+          <p class="meal-recipe">1 whole egg + 5 egg whites whisked. Sauté ½ cup mushrooms + ¼ cup frozen spinach (squeezed) + onion in 1 tsp oil. Pour eggs over. Fold, plate.</p>
+          <div class="meal-stats"><span class="stat">275 kcal</span><span class="stat">33 g P</span><span class="stat">3 g fiber</span></div>
+          <div class="benefit">✓ Mushrooms give vitamin D + selenium. Spinach iron is well-absorbed cooked.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>11 AM</strong><span>Snack</span></div>
+        <div class="meal-content">
+          <h4>Cucumber slices + lemon-salt</h4>
+          <p class="meal-recipe">1 full cucumber sliced. Sprinkle with rock salt, black pepper, lemon, chili powder.</p>
+          <div class="meal-stats"><span class="stat">30 kcal</span><span class="stat">1 g P</span></div>
+          <div class="benefit">✓ Crunch + hydration. Distracts hunger for 30+ minutes.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>1 PM</strong><span>Lunch</span></div>
+        <div class="meal-content">
+          <h4>Tandoori chicken + raita slaw</h4>
+          <p class="meal-recipe">Marinate 5 oz chicken leg meat in 3 tbsp Greek yogurt + tandoori spice + ginger-garlic + salt for 30 min. Pan-grill with 1 tsp oil. Serve over 3 cups slaw (cabbage + carrot + onion + lemon). Side raita: ½ cup yogurt + cucumber + mint.</p>
+          <div class="meal-stats"><span class="stat">395 kcal</span><span class="stat">42 g P</span><span class="stat">8 g fiber</span></div>
+          <div class="benefit">✓ Yogurt marinade tenderizes & adds probiotics. Raita cools the spice and adds calcium.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>5 PM</strong><span>Snack</span></div>
+        <div class="meal-content">
+          <h4>Veg broth + lentil sprinkle</h4>
+          <p class="meal-recipe">2 cups homemade broth with 2 tbsp cooked lentils stirred in for body.</p>
+          <div class="meal-stats"><span class="stat">70 kcal</span><span class="stat">4 g P</span><span class="stat">3 g fiber</span></div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>8 PM</strong><span>Dinner</span></div>
+        <div class="meal-content">
+          <h4>Tofu stir-fry + zucchini noodles</h4>
+          <p class="meal-recipe">Spiralize or julienne 1 zucchini (or use 1 pack shirataki). Sauté with 6 oz cubed firm tofu, broccoli, bell pepper, mushrooms in 1 tsp sesame oil. Sauce: 1 tbsp soy + 1 tsp rice vinegar + ginger + garlic + chili flakes.</p>
+          <div class="meal-stats"><span class="stat">425 kcal</span><span class="stat">35 g P</span><span class="stat">12 g fiber</span></div>
+          <div class="benefit">✓ Tofu = complete plant protein + calcium + iron. Variety from chicken every day matters for adherence.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head">
+      <h3>Day 4 · Thursday</h3>
+      <div class="day-macros">
+        <span><strong>1,180</strong>kcal</span>
+        <span><strong>110g</strong>protein</span>
+        <span><strong>42g</strong>fiber</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="meal">
+        <div class="meal-time"><strong>8 AM</strong><span>Breakfast</span></div>
+        <div class="meal-content">
+          <h4>Egg-white frittata cups (batch cook)</h4>
+          <p class="meal-recipe">Sunday batch: 12 egg whites + 2 whole eggs + chopped frozen spinach + tomato + onion + 1 tsp oil baked in muffin tin (350°F, 18 min). Eat 4 cups for breakfast with sliced tomato.</p>
+          <div class="meal-stats"><span class="stat">260 kcal</span><span class="stat">30 g P</span><span class="stat">4 g fiber</span><span class="stat">2 min reheat</span></div>
+          <div class="benefit">✓ Batch cooking = 0 friction on weekday mornings. Adherence multiplier.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>11 AM</strong><span>Snack</span></div>
+        <div class="meal-content">
+          <h4>Carrot sticks + yogurt dip</h4>
+          <p class="meal-recipe">1 large carrot in sticks + 3 tbsp Greek yogurt with garlic powder, dill, lemon, salt.</p>
+          <div class="meal-stats"><span class="stat">75 kcal</span><span class="stat">6 g P</span><span class="stat">3 g fiber</span></div>
+          <div class="benefit">✓ Beta-carotene + chewing time + protein dip = full satiety package.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>1 PM</strong><span>Lunch</span></div>
+        <div class="meal-content">
+          <h4>Lentil-vegetable bowl</h4>
+          <p class="meal-recipe">¾ cup cooked lentils + 2 cups sautéed cabbage-onion-tomato (1 tsp oil) + turmeric + cumin + chili. Top with Greek yogurt and lemon.</p>
+          <div class="meal-stats"><span class="stat">385 kcal</span><span class="stat">26 g P</span><span class="stat">16 g fiber</span></div>
+          <div class="benefit">✓ Plant-protein day rests the choline/cholesterol load from eggs and chicken. Lentil fiber feeds gut bacteria.</div>
+          <div class="precaution">⚠ Soak lentils 4+ hours if you get gas from them. Or add ½ tsp asafoetida (hing) while cooking.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>5 PM</strong><span>Snack</span></div>
+        <div class="meal-content">
+          <h4>Whey shake</h4>
+          <p class="meal-recipe">1 scoop whey + 250 ml water + ice.</p>
+          <div class="meal-stats"><span class="stat">125 kcal</span><span class="stat">24 g P</span></div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>8 PM</strong><span>Dinner</span></div>
+        <div class="meal-content">
+          <h4>Pepper chicken + cauliflower rice</h4>
+          <p class="meal-recipe">5 oz chicken leg cubes pan-cooked with crushed black pepper, garlic, curry leaves, 1 tsp oil. Side: 1 cup cauliflower "rice" sautéed with onion and turmeric. Big side salad of cucumber-tomato-onion.</p>
+          <div class="meal-stats"><span class="stat">335 kcal</span><span class="stat">38 g P</span><span class="stat">9 g fiber</span></div>
+          <div class="benefit">✓ Cauliflower rice = 25 kcal/cup vs 200 for rice. Saves 175 kcal vs the same dish over basmati.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head">
+      <h3>Day 5 · Friday</h3>
+      <div class="day-macros">
+        <span><strong>1,215</strong>kcal</span>
+        <span><strong>114g</strong>protein</span>
+        <span><strong>34g</strong>fiber</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="meal">
+        <div class="meal-time"><strong>8 AM</strong><span>Breakfast</span></div>
+        <div class="meal-content">
+          <h4>Veggie egg bhurji</h4>
+          <p class="meal-recipe">2 whole eggs + 3 whites scrambled Indian-style: 1 tsp oil, onion, tomato, green chili, ginger, turmeric, salt, cilantro. Cooked until soft-crumbly.</p>
+          <div class="meal-stats"><span class="stat">295 kcal</span><span class="stat">30 g P</span><span class="stat">3 g fiber</span></div>
+          <div class="benefit">✓ Familiar comfort flavor keeps adherence high. Variety prevents food boredom.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>11 AM</strong><span>Snack</span></div>
+        <div class="meal-content">
+          <h4>Cucumber + Greek yogurt dip</h4>
+          <p class="meal-recipe">Sliced cucumber with garlic-mint yogurt dip (4 tbsp yogurt + lemon).</p>
+          <div class="meal-stats"><span class="stat">85 kcal</span><span class="stat">8 g P</span></div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>1 PM</strong><span>Lunch</span></div>
+        <div class="meal-content">
+          <h4>Chicken-and-greens megabowl</h4>
+          <p class="meal-recipe">3 cups raw cabbage + spinach (defrosted) + tomato + onion + cucumber. Top with 5 oz pan-cooked chicken leg meat (cumin, chili, garlic). Dressing: lemon + 1 tsp olive oil + black pepper + salt. Side: 2 tbsp cooked lentils for fiber boost.</p>
+          <div class="meal-stats"><span class="stat">395 kcal</span><span class="stat">42 g P</span><span class="stat">11 g fiber</span></div>
+          <div class="benefit">✓ Lemon-oil dressing helps absorb fat-soluble vitamins from greens.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>5 PM</strong><span>Snack</span></div>
+        <div class="meal-content">
+          <h4>Veg broth + 2 boiled egg whites</h4>
+          <p class="meal-recipe">2 cups broth + 2 boiled egg whites.</p>
+          <div class="meal-stats"><span class="stat">75 kcal</span><span class="stat">8 g P</span></div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>8 PM</strong><span>Dinner</span></div>
+        <div class="meal-content">
+          <h4>Egg curry + cabbage stir</h4>
+          <p class="meal-recipe">Hard-boil 3 eggs (keep yolks). Curry: onion + tomato + ginger + garlic + spices sautéed in 1 tsp oil, simmered with ½ cup water. Add halved eggs, cook 3 min. Side: 2 cups stir-fried cabbage with garlic (no extra oil — use water + soy sauce).</p>
+          <div class="meal-stats"><span class="stat">365 kcal</span><span class="stat">26 g P</span><span class="stat">9 g fiber</span></div>
+          <div class="benefit">✓ Whole eggs give choline + B12 + lutein. Cabbage stir-fry = volume without oil.</div>
+          <div class="precaution">⚠ Friday is your highest-cholesterol day (3 whole eggs). Stay under 2 whole eggs on weekend.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head">
+      <h3>Day 6 · Saturday</h3>
+      <div class="day-macros">
+        <span><strong>1,225</strong>kcal</span>
+        <span><strong>107g</strong>protein</span>
+        <span><strong>35g</strong>fiber</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="meal">
+        <div class="meal-time"><strong>9 AM</strong><span>Breakfast</span></div>
+        <div class="meal-content">
+          <h4>Yogurt-oats bowl</h4>
+          <p class="meal-recipe">200 g Greek yogurt + ⅓ cup raw oats + cinnamon + ½ scoop whey + a few frozen berries if available.</p>
+          <div class="meal-stats"><span class="stat">320 kcal</span><span class="stat">35 g P</span><span class="stat">5 g fiber</span></div>
+          <div class="benefit">✓ Saturday rest-pace meal — overnight oats version: prep Friday night, eat cold Saturday morning.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>12 PM</strong><span>Lunch</span></div>
+        <div class="meal-content">
+          <h4>Grilled chicken Cobb-style salad</h4>
+          <p class="meal-recipe">3 cups chopped cabbage + cucumber + tomato + onion. Top with 5 oz grilled chicken leg meat + 1 hard-boiled egg (chopped). Dressing: 2 tbsp Greek yogurt + lemon + Dijon-style mustard + black pepper.</p>
+          <div class="meal-stats"><span class="stat">410 kcal</span><span class="stat">44 g P</span><span class="stat">8 g fiber</span></div>
+          <div class="benefit">✓ Big restaurant-style salad without the $18 bill.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>4 PM</strong><span>Snack</span></div>
+        <div class="meal-content">
+          <h4>Whey + cucumber sticks</h4>
+          <p class="meal-recipe">1 scoop whey shake + cucumber sticks.</p>
+          <div class="meal-stats"><span class="stat">130 kcal</span><span class="stat">24 g P</span></div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>8 PM</strong><span>Dinner</span></div>
+        <div class="meal-content">
+          <h4>Konjac shoyu noodle bowl</h4>
+          <p class="meal-recipe">1 pack shirataki (rinsed + dry-toasted) + 1 cup bean sprouts + frozen broccoli + mushrooms in 1 tsp sesame oil. Sauce: 1.5 tbsp soy + ginger + garlic + chili oil dab + 1 tsp rice vinegar. Top with 1 sliced soft-boiled egg.</p>
+          <div class="meal-stats"><span class="stat">365 kcal</span><span class="stat">22 g P</span><span class="stat">10 g fiber</span></div>
+          <div class="benefit">✓ Satisfies "noodle craving" for ~30 kcal of carbs. Bean sprouts add crunch + folate.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head">
+      <h3>Day 7 · Sunday · Prep day</h3>
+      <div class="day-macros">
+        <span><strong>1,190</strong>kcal</span>
+        <span><strong>109g</strong>protein</span>
+        <span><strong>37g</strong>fiber</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="meal">
+        <div class="meal-time"><strong>9 AM</strong><span>Breakfast</span></div>
+        <div class="meal-content">
+          <h4>Greek yogurt + flax + cinnamon</h4>
+          <p class="meal-recipe">200 g Greek yogurt + 1 tbsp ground flaxseed + cinnamon + ½ scoop whey. (If you keep flax, ~$3/bag, gives omega-3s.)</p>
+          <div class="meal-stats"><span class="stat">295 kcal</span><span class="stat">32 g P</span><span class="stat">5 g fiber</span></div>
+          <div class="benefit">✓ Flax adds plant omega-3s (ALA) + lignans + extra fiber. One-time investment for the pantry.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>12 PM</strong><span>Lunch</span></div>
+        <div class="meal-content">
+          <h4>Mediterranean chicken plate</h4>
+          <p class="meal-recipe">5 oz chicken leg meat marinated in lemon + garlic + oregano + olive oil, pan-grilled. Side: 2 cups Greek-style cabbage salad (cabbage + cucumber + tomato + onion + 1 tsp olive oil + lemon + oregano). ⅓ cup cooked lentils mixed in.</p>
+          <div class="meal-stats"><span class="stat">410 kcal</span><span class="stat">41 g P</span><span class="stat">12 g fiber</span></div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>3 PM</strong><span>Prep block</span></div>
+        <div class="meal-content">
+          <h4>Sunday prep (saves your week)</h4>
+          <p class="meal-recipe">Cook 1 lb chicken legs in bulk (oven 400°F, 30 min, 1 tsp oil + salt + pepper). Cook 1 cup dry lentils in 3 cups water (25 min). Make broth from cabbage cores. Pre-shred cabbage for 3 days. Hard-boil 6 eggs. Bake egg-white frittata cups.</p>
+          <div class="tip-box"><strong>Time:</strong> 90 minutes of active prep saves 30+ min/day during the week. The single biggest adherence factor.</div>
+        </div>
+      </div>
+      <div class="meal">
+        <div class="meal-time"><strong>8 PM</strong><span>Dinner</span></div>
+        <div class="meal-content">
+          <h4>Lentil-vegetable soup + side salad</h4>
+          <p class="meal-recipe">1 cup cooked lentils simmered with onion, tomato, carrot, frozen spinach, cumin, turmeric, salt, lemon. 4 cups total. Big cabbage-cucumber salad on the side with lemon.</p>
+          <div class="meal-stats"><span class="stat">390 kcal</span><span class="stat">25 g P</span><span class="stat">15 g fiber</span></div>
+          <div class="benefit">✓ Plant-protein dinner ends week with low cholesterol load. Soup volume + warmth = ideal Sunday wind-down.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead"><h3>Why each ingredient is in your plan</h3></div>
+
+  <div class="ingredient-grid">
+    <div class="ing-card">
+      <h4>Eggs (30/week)</h4>
+      <p class="muted">Complete protein, ~$0.15 each — cheapest dense protein in your kitchen. Whites for protein only, yolks 2–3 per day for choline, B12, lutein, vitamin D.</p>
+    </div>
+    <div class="ing-card">
+      <h4>Chicken legs (3 lb/wk)</h4>
+      <p class="muted">$3/lb beats breast by 40%. Higher iron + zinc than breast. Skin off saves ~7g fat/leg. 27g protein per 4 oz cooked.</p>
+    </div>
+    <div class="ing-card">
+      <h4>Green cabbage (2 heads)</h4>
+      <p class="muted">$1/lb. The volume engine. 25 kcal/100g, 2.5g fiber/cup. Replaces 90% of rice/pasta calories at 10% the cost.</p>
+    </div>
+    <div class="ing-card">
+      <h4>Greek yogurt (32 oz tub)</h4>
+      <p class="muted">17g protein per 6 oz. Slow-digesting casein keeps you full. Calcium + probiotics. Doubles as marinade and salad dressing base.</p>
+    </div>
+    <div class="ing-card">
+      <h4>Lentils (1 lb dry)</h4>
+      <p class="muted">$2/lb = 8 servings = $0.25/meal of protein. Highest fiber:calorie ratio of any protein. Iron, folate, B vitamins, gut-feeding fiber.</p>
+    </div>
+    <div class="ing-card">
+      <h4>Tofu (14 oz)</h4>
+      <p class="muted">Variety lever. Plant complete protein, calcium-set. Absorbs sauces. One block = 3–4 servings at $0.75 each.</p>
+    </div>
+    <div class="ing-card">
+      <h4>Whey protein</h4>
+      <p class="muted">$0.60 per 24g protein serving. Fastest, cheapest, post-walk protein hit. Use 1–2 scoops/day max — supplement, not a meal.</p>
+    </div>
+    <div class="ing-card">
+      <h4>Shirataki (3/wk)</h4>
+      <p class="muted">10 kcal/pack. Glucomannan expands in stomach. Best for "noodle craving" nights. Cabbage covers the other 4 nights at 5% the cost.</p>
+    </div>
+    <div class="ing-card">
+      <h4>Frozen vegetables</h4>
+      <p class="muted">Cheaper than fresh, more nutritious (flash-frozen at peak), zero waste. Spinach, broccoli, mixed stir-fry — your freezer is your friend.</p>
+    </div>
+    <div class="ing-card">
+      <h4>Cucumber & tomato</h4>
+      <p class="muted">Hydration + crunch + minimal calories. Cucumber = 96% water = 16 kcal/100g. Eat freely as a snack.</p>
+    </div>
+    <div class="ing-card">
+      <h4>Onion, garlic, ginger</h4>
+      <p class="muted">Flavor base for everything. Antimicrobial, anti-inflammatory, almost free per meal. The reason your food won't taste like diet food.</p>
+    </div>
+    <div class="ing-card">
+      <h4>Lemons</h4>
+      <p class="muted">Vitamin C, brightens flavor, lets you cut salt. Squeeze on everything. $0.50 per lemon, 8 meals worth of acid.</p>
+    </div>
+  </div>
+
+  <div class="subhead"><h3>Daily precautions & what to watch for</h3></div>
+
+  <div class="precaution-box">
+    <strong>Week 1 — adaptation:</strong> Expect mild headache, fatigue, possible constipation. Counter with 3 L water/day. Add a pinch of salt to broth and meals (your body sheds sodium on low-carb). This passes by day 7–10.
+  </div>
+  <div class="precaution-box">
+    <strong>Cholesterol load:</strong> Max 3 whole eggs/day. Friday is your highest egg-yolk day — keep weekend yolks to 1–2. Get a lipid panel at month 3 to confirm response.
+  </div>
+  <div class="precaution-box">
+    <strong>Gallstone risk:</strong> Rapid weight loss (>1.5 kg/wk sustained) raises gallstone formation. Your plan stays at ~1 kg/wk. Keep some fat in every meal (the olive oil and yolks).
+  </div>
+  <div class="precaution-box">
+    <strong>Konjac timing:</strong> Take any prescription medications at least 1 hour before or 2 hours after shirataki — glucomannan can slow absorption.
+  </div>
+  <div class="precaution-box">
+    <strong>Food safety:</strong> Cook chicken to 165°F internal (get a $10 thermometer). Refrigerate cooked food within 2 hours. Use cooked chicken within 3–4 days, eggs (cooked) within 5 days.
+  </div>
+  <div class="precaution-box">
+    <strong>When to pause and call a doctor:</strong> Chest pain, severe right-upper-abdominal pain, persistent dizziness, constipation lasting >3 days despite water, or losing >1.5 kg/week sustained for 3+ weeks.
+  </div>
+
+  <div class="subhead"><h3>What you should notice — week by week</h3></div>
+
+  <div class="grid g2">
+    <div class="card card-cream">
+      <h4 style="color:var(--green-dark);">Week 1</h4>
+      <ul style="list-style:none; margin-top:6px;">
+        <li style="padding:4px 0;">• 2–4 kg lost (mostly water)</li>
+        <li style="padding:4px 0;">• Mild fatigue + headache (passes)</li>
+        <li style="padding:4px 0;">• Constipation possible — drink more</li>
+        <li style="padding:4px 0;">• Less afternoon crash</li>
+      </ul>
+    </div>
+    <div class="card card-cream">
+      <h4 style="color:var(--green-dark);">Weeks 2–4</h4>
+      <ul style="list-style:none; margin-top:6px;">
+        <li style="padding:4px 0;">• Steady 0.8–1 kg/week loss</li>
+        <li style="padding:4px 0;">• Energy returns and stabilizes</li>
+        <li style="padding:4px 0;">• Sleep improves</li>
+        <li style="padding:4px 0;">• Clothes fit looser</li>
+      </ul>
+    </div>
+    <div class="card card-cream">
+      <h4 style="color:var(--green-dark);">Months 2–3</h4>
+      <ul style="list-style:none; margin-top:6px;">
+        <li style="padding:4px 0;">• 10–14 kg total down</li>
+        <li style="padding:4px 0;">• Easier walking, less knee strain</li>
+        <li style="padding:4px 0;">• First plateau likely (normal)</li>
+        <li style="padding:4px 0;">• Bloodwork improving</li>
+      </ul>
+    </div>
+    <div class="card card-cream">
+      <h4 style="color:var(--green-dark);">Months 4–6</h4>
+      <ul style="list-style:none; margin-top:6px;">
+        <li style="padding:4px 0;">• 18–25 kg total</li>
+        <li style="padding:4px 0;">• Near goal weight (70–75 kg)</li>
+        <li style="padding:4px 0;">• Start transition to maintenance</li>
+        <li style="padding:4px 0;">• Hair shedding may peak then recover</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="subhead"><h3>Movement layer (the multiplier)</h3></div>
+  <div class="grid g3">
+    <div class="card">
+      <h4>10,000 steps/day</h4>
+      <p class="muted">~400 extra kcal burn at your weight. Walking actually suppresses appetite. Worcester winter: try Auburn Mall or Greendale Mall walking before stores open.</p>
+    </div>
+    <div class="card">
+      <h4>2 strength sessions/week</h4>
+      <p class="muted">15–20 min bodyweight or light dumbbells. Squats, push-ups, rows, lunges. Preserves muscle in deficit — the difference between fat loss and weight loss.</p>
+    </div>
+    <div class="card">
+      <h4>Skip intense HIIT for now</h4>
+      <p class="muted">In aggressive deficit, hard cardio makes you ravenous and burns out. Save it for maintenance phase post-month 6.</p>
+    </div>
+  </div>
+
+</div>
+
+</section>
+
+<div class="footer">
+  <strong style="color:var(--lime); font-size:16px; letter-spacing:0.04em;">DIET FEAST</strong> · Eat Big. Stay Lean.<br>
+  Worcester, MA · Built by Vamsi · vamsy.24@gmail.com<br>
+  <span style="font-size:11px; color:var(--gray);">This plan is not medical advice. Consult a physician before starting any aggressive weight-loss diet.</span>
+</div>
+
+<script>
+const tabs = document.querySelectorAll('.tab');
+const sections = document.querySelectorAll('.section');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.section;
+    tabs.forEach(t => t.classList.remove('active'));
+    sections.forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(target).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>
